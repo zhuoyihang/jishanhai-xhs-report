@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>既山海 | 小红书二期投放方案 · 唤山觉醒新品推广</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: #0a3d2e;
+            color: #fff;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .watermark {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 1000; opacity: 0.06;
+            display: flex; flex-wrap: wrap; align-content: center; justify-content: center;
+        }
+        .watermark span {
+            font-size: 28px; font-weight: bold; width: 400px;
+            text-align: center; transform: rotate(-45deg); margin: 20px 0;
+        }
+        .container { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+        
+        /* Header */
+        .header { text-align: center; margin-bottom: 50px; }
+        .header h1 { font-size: 38px; font-weight: bold; margin-bottom: 8px; letter-spacing: 4px; }
+        .header .subtitle { font-size: 20px; color: rgba(255,255,255,0.75); margin-bottom: 6px; }
+        .header .date { font-size: 14px; color: rgba(255,255,255,0.5); }
+
+        /* Section */
+        .section {
+            background: rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 36px;
+            margin-bottom: 26px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .section-title {
+            font-size: 22px; font-weight: bold; margin-bottom: 24px;
+            padding-bottom: 12px; border-bottom: 2px solid rgba(255,255,255,0.2);
+            display: flex; align-items: center; gap: 10px;
+        }
+        .section-title .icon { font-size: 24px; }
+
+        /* Key Data Cards */
+        .key-data { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 20px; }
+        .data-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
+            border-radius: 14px; padding: 22px; text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .data-card .num { font-size: 36px; font-weight: bold; color: #7dd3b8; line-height: 1.2; }
+        .data-card .label { font-size: 13px; color: rgba(255,255,255,0.65); margin-top: 6px; }
+        .data-card .sub { font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 4px; }
+
+        /* Table */
+        table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 14px; }
+        th {
+            background: rgba(125,211,184,0.15); color: #7dd3b8;
+            padding: 12px 14px; text-align: left; font-weight: 600;
+            white-space: nowrap; font-size: 13px; letter-spacing: 0.5px;
+        }
+        td { padding: 11px 14px; border-bottom: 1px solid rgba(255,255,255,0.06); vertical-align: middle; }
+        tr:hover td { background: rgba(255,255,255,0.03); }
+        th:first-child { border-radius: 10px 0 0 10px; }
+        th:last-child { border-radius: 0 10px 10px 0; }
+
+        /* Tag */
+        .tag {
+            display: inline-block; padding: 3px 10px; border-radius: 20px;
+            font-size: 11px; font-weight: 500; margin-right: 5px;
+        }
+        .tag-suren { background: rgba(150,150,150,0.25); color: #ccc; }
+        .tag-koc-low { background: rgba(100,180,140,0.25); color: #8ed4ae; }
+        .tag-koc-mid { background: rgba(80,160,200,0.25); color: #8ecfef; }
+        .tag-kol { background: rgba(200,160,80,0.25); color: #f0d888; }
+        .tag-product { background: rgba(180,100,200,0.25); color: #d9a8ea; }
+        .tag-live { background: rgba(220,120,60,0.25); color: #f5b87a; }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(125,211,184,0.12), rgba(125,211,184,0.04));
+            border-left: 4px solid #7dd3b8;
+            border-radius: 0 12px 12px 0;
+            padding: 18px 22px; margin: 18px 0; font-size: 14px; line-height: 1.75;
+        }
+        .highlight-box strong { color: #7dd3b8; }
+
+        /* Warning box */
+        .warn-box {
+            background: linear-gradient(135deg, rgba(230,170,50,0.12), rgba(230,170,50,0.04));
+            border-left: 4px solid #e6aa32;
+            border-radius: 0 12px 12px 0;
+            padding: 16px 20px; margin: 16px 0; font-size: 13.5px; line-height: 1.7;
+        }
+        .warn-box strong { color: #f0c860; }
+
+        /* Product Card */
+        .product-card {
+            background: linear-gradient(135deg, rgba(180,100,200,0.12), rgba(80,40,100,0.12));
+            border-radius: 16px; padding: 28px; text-align: center;
+            border: 1px solid rgba(180,100,200,0.25);
+        }
+        .product-name { font-size: 28px; font-weight: bold; color: #d9a8ea; margin-bottom: 8px; letter-spacing: 3px; }
+        .product-sub { font-size: 15px; color: rgba(255,255,255,0.7); margin-bottom: 16px; }
+        .product-desc { font-size: 14px; line-height: 1.85; color: rgba(255,255,255,0.8); text-align: left; }
+
+        /* Strategy Grid */
+        .strategy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+        .strat-item {
+            background: rgba(255,255,255,0.05); border-radius: 14px;
+            padding: 22px; border: 1px solid rgba(255,255,255,0.07);
+        }
+        .strat-item h4 { font-size: 16px; margin-bottom: 12px; color: #7dd3b8; }
+        .strat-item ul { list-style: none; padding: 0; }
+        .strat-item li {
+            padding: 5px 0; font-size: 13.5px; color: rgba(255,255,255,0.8);
+            line-height: 1.6; padding-left: 16px; position: relative;
+        }
+        .strat-item li::before { content: "▸"; position: absolute; left: 0; color: #7dd3b8; font-size: 11px; }
+
+        /* Timeline */
+        .timeline { position: relative; padding-left: 30px; }
+        .timeline::before {
+            content: ''; position: absolute; left: 10px; top: 0; bottom: 0;
+            width: 2px; background: rgba(125,211,184,0.3);
+        }
+        .tl-node {
+            position: relative; margin-bottom: 28px;
+            background: rgba(255,255,255,0.05); border-radius: 12px; padding: 18px 20px;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        .tl-node::before {
+            content: ''; position: absolute; left: -24px; top: 22px;
+            width: 12px; height: 12px; border-radius: 50%;
+            background: #7dd3b8; border: 2px solid #0a3d2e;
+        }
+        .tl-date { font-size: 12px; color: #7dd3b8; font-weight: 600; margin-bottom: 6px; }
+        .tl-title { font-size: 16px; font-weight: bold; margin-bottom: 8px; }
+        .tl-desc { font-size: 13.5px; color: rgba(255,255,255,0.72); line-height: 1.65; }
+
+        /* Budget breakdown bar */
+        .budget-bar { display: flex; height: 36px; border-radius: 10px; overflow: hidden; margin: 16px 0; }
+        .bb-seg { display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; transition: all 0.3s; cursor: pointer; }
+        .bb-seg:hover { filter: brightness(1.15); transform: scaleY(1.05); }
+        .bb-legend { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 12px; }
+        .bb-leg { display: flex; align-items: center; gap: 6px; font-size: 12px; color: rgba(255,255,255,0.75); }
+        .bb-dot { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+
+        /* Content angle cards */
+        .angle-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+        .angle-card {
+            background: rgba(255,255,255,0.05); border-radius: 14px; overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.07);
+        }
+        .angle-header { padding: 16px 18px; font-size: 15px; font-weight: bold; text-align: center; }
+        .angle-body { padding: 16px 18px; }
+        .angle-body p { font-size: 13px; line-height: 1.7; color: rgba(255,255,255,0.78); margin-bottom: 10px; }
+        .title-examples { font-size: 12px !important; color: rgba(255,255,255,0.55) !important; }
+        .title-examples div { padding: 3px 0; }
+
+        /* Comparison table - old vs new */
+        .compare-table { width: 100%; margin-top: 12px; }
+        .compare-table td:first-child { font-weight: 600; color: #7dd3b8; width: 30%; }
+        .compare-table td:nth-child(2) { color: rgba(255,255,255,0.55); text-decoration: line-through; width: 35%; }
+        .compare-table td:last-child { color: #8ed4ae; font-weight: 500; width: 35%; }
+        .compare-label { text-align: center; font-size: 11px; color: rgba(255,255,255,0.45); padding: 6px; }
+        .compare-table th { background: transparent !important; color: rgba(255,255,255,0.6) !important; font-size: 12px !important; }
+
+        /* Footer */
+        .footer { text-align: center; padding: 30px 0; color: rgba(255,255,255,0.35); font-size: 12px; }
+
+        @media(max-width:768px) {
+            body { padding: 20px 12px; }
+            .section { padding: 24px 18px; }
+            .header h1 { font-size: 26px; }
+            .data-card .num { font-size: 28px; }
+            table { font-size: 12px; }
+            th, td { padding: 8px 8px; }
+            .strategy-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<div class="watermark"><span>既山海 · 内部资料</span><span>万道潮传媒</span></div>
+
+<div class="container">
+
+<!-- Header -->
+<div class="header">
+    <h1>🍵 既山海 × 东郊记忆门店</h1>
+    <div class="subtitle">小红书二期投放方案 · 唤山觉醒 新品铺量推广</div>
+    <div class="date">2026年4月 | 第二期 | 预算 ¥12,000</div>
+</div>
+
+<!-- ========== 01 项目背景 ========== -->
+<div class="section">
+    <div class="section-title"><span class="icon">📋</span> 一、项目背景与核心目标</div>
+
+    <div class="product-card" style="margin-top: 16px;">
+        <div class="product-name">🌿 唤 山 觉 醒</div>
+        <div class="product-sub">木姜子风味 · 东方山野茶系列 · 520/521直播主推新品</div>
+        <div class="product-desc">
+            <strong>产品定位：</strong>以云南木姜子（山苍子）为核心风味的创新茶饮，具有独特的柠檬香+微辛回甘，区别于市面上所有主流茶饮风味。<br><br>
+            <strong>品牌使命：</strong>通过「唤山觉醒」这一差异化单品，<br>
+            → 唤醒消费者对「既山海」品牌的认知<br>
+            → 建立<strong style="color:#d9a8ea;">「东方山野茶 = 既山海」</strong>的品类唯一性<br>
+            → 打造「山野茶 = 品牌」的强心智绑定
+        </div>
+    </div>
+
+    <div class="highlight-box" style="margin-top: 22px;">
+        <strong>📊 核心数据：</strong>总预算 <strong>¥12,000</strong> | 目标利润率 <strong>~40%</strong> | 可用投放成本 ≈ <strong>¥7,200</strong> |
+        目标产出 <strong>40 条</strong>笔记 | 单均成本控制 <strong>≤¥180</strong>
+    </div>
+
+    <table class="compare-table" style="margin-top: 20px;">
+        <tr>
+            <td>对比维度</td>
+            <td class="compare-label">一期（已执行）</td>
+            <td class="compare-label">二期（本方案）</td>
+        </tr>
+        <tr><td>总预算</td><td>—</td><td>¥12,000</td></tr>
+        <tr><td>笔记数量</td><td>7条</td><td>40条</td></tr>
+        <tr><td>粉丝成本(CPE)</td><td>偏高</td><td>大幅降低</td></tr>
+        <tr><td>达人策略</td><td>中腰部为主</td><td>KOC素人铺量 + 少量腰部</td></tr>
+        <tr><td>核心目标</td><td>品牌曝光+内容积累</td><td>铺量种草 + 新品预热 + 直播引流</td></tr>
+        <tr><td>时间节点</td><td>已完成</td><td>520/521 直播前集中释放</td></tr>
+    </table>
+
+    <div class="warn-box" style="margin-top: 18px;">
+        <strong>⚠️ 关键约束：</strong>客户要求 40 条笔记，预算不变，需通过<strong>降低单条达人成本</strong>实现铺量。
+        策略核心：以<strong>初级KOC + 素人</strong>为主体，搭配少量腰部KOL做质量锚点，
+        在保证内容真实感的前提下最大化覆盖面，为 520/521 直播蓄水引流。
+    </div>
+</div>
+
+<!-- ========== 02 达人搭配方案 ========== -->
+<div class="section">
+    <div class="section-title"><span class="icon">👥</span> 二、达人搭配方案（40条）</div>
+
+    <div class="key-data">
+        <div class="data-card">
+            <div class="num">¥7,200</div>
+            <div class="label">可用投放成本</div>
+            <div class="sub">(含40%利润后)</div>
+        </div>
+        <div class="data-card">
+            <div class="num">40</div>
+            <div class="label">目标笔记数</div>
+            <div class="sub">品牌方要求</div>
+        </div>
+        <div class="data-card">
+            <div class="num">¥180</div>
+            <div class="label">单均成本上限</div>
+            <div class="sub">实际均价 ~¥165</div>
+        </div>
+        <div class="data-card">
+            <div class="num">¥4,800</div>
+            <div class="label">预期利润空间</div>
+            <div class="sub">≈ 利润率 40%</div>
+        </div>
+    </div>
+
+    <!-- Budget Bar -->
+    <div class="budget-bar">
+        <div class="bb-seg" style="width:17.5%;background:rgba(160,160,160,0.5);" title="素人 14条 ¥700">素人<br>14条<br>¥700</div>
+        <div class="bb-seg" style="width:35.3%;background:rgba(100,180,140,0.5);" title="初级KOC 17条 ¥2,210">初级KOC<br>17条<br>¥2,210</div>
+        <div class="bb-seg" style="width:27.8%;background:rgba(80,160,200,0.5);" title="中级KOC 7条 ¥1,820">中级KOC<br>7条<br>¥1,820</div>
+        <div class="bb-seg" style="width:19.4%;background:rgba(200,160,80,0.5);" title="腰部KOL 2条 ¥1,400">腰部KOL<br>2条<br>¥1,400</div>
+    </div>
+    <div class="bb-legend">
+        <span class="bb-leg"><span class="bb-dot" style="background:rgba(160,160,160,0.7);"></span>素人 &lt;1k粉 · 14条 · ¥50/条</span>
+        <span class="bb-leg"><span class="bb-dot" style="background:rgba(100,180,140,0.7);"></span>初级KOC 1-3k粉 · 17条 · ¥130/条</span>
+        <span class="bb-leg"><span class="bb-dot" style="background:rgba(80,160,200,0.7);"></span>中级KOC 3-8k粉 · 7条 · ¥260/条</span>
+        <span class="bb-leg"><span class="bb-dot" style="background:rgba(200,160,80,0.7);"></span>腰部KOL 1w+粉 · 2条 · ¥700/条</span>
+    </div>
+
+    <h3 style="font-size:17px;margin:30px 0 14px;color:#7dd3b8;">📐 达人矩阵详情</h3>
+    <table>
+        <tr>
+            <th>层级</th><th>粉丝量级</th><th>成都市场非报备单价<br>(2025-2026参考)</th>
+            <th>条数</th><th>小计</th><th>占比</th><th>角色定位</th>
+        </tr>
+        <tr>
+            <td><span class="tag tag-suren">优质素人</span></td>
+            <td>&lt; 1,000 粉（精选）<br><span style="font-size:11px;color:rgba(255,255,255,0.5);">要求真实活跃、无刷量痕迹</span></td><td>¥50 - ¥80</td>
+            <td><strong>14 条</strong></td><td>¥700</td><td>10.8%</td>
+            <td>真实口碑地基、搜索长尾占位<br><span style="font-size:11px;color:rgba(125,211,184,0.8);">✓ 100%真账号 · 拒绝任何假数据</span></td>
+        </tr>
+        <tr>
+            <td><span class="tag tag-koc-low">初级KOC</span></td>
+            <td>1,000 - 3,000 粉</td><td>¥90 - ¥180</td>
+            <td><strong>17 条</strong></td>
+            <td>¥2,210</td>
+            <td>34.0%</td>
+            <td>主力铺量军、高性价比种草</td>
+        </tr>
+        <tr>
+            <td><span class="tag tag-koc-mid">中级KOC</span></td>
+            <td>3,000 - 8,000 粉</td><td>¥200 - ¥350</td>
+            <td><strong>7 条</strong></td>
+            <td>¥1,820</td>
+            <td>28.0%</td>
+            <td>内容质量锚点、互动量保障</td>
+        </tr>
+        <tr>
+            <td><span class="tag tag-kol">腰部KOL</span></td>
+            <td>10,000 - 50,000 粉</td><td>¥500 - ¥900</td>
+            <td><strong>2 条</strong></td>
+            <td>¥1,400</td>
+            <td>21.6%</td>
+            <td>头部引爆、品牌背书、直播预告</td>
+        </tr>
+        <tr style="background:rgba(125,211,184,0.08);">
+            <td colspan="4" style="text-align:right;font-weight:bold;padding-right:20px;">合计：</td>
+            <td><strong>¥6,130</strong></td>
+            <td>100%</td>
+            <td>≤ ¥7,200 上限 ✅</td>
+        </tr>
+    </table>
+
+    <div class="highlight-box">
+        <strong>💡 方案说明：</strong><br>
+        • 实际达人支出 <strong>¥6,130</strong>，留有 <strong>¥1,070</strong> 弹性备用金（用于达人临时调价/加急费/少量薯条加热）<br>
+        • 素人+初级KOC 占比 <strong>77.5%（31条）</strong>——这是铺量的核心主力，确保声量规模<br>
+        • 中级KOC 7条做<strong>内容品质线</strong>，避免全是素人的廉价感<br>
+        • 腰部KOL 仅 2条，选在<strong>直播前1天发布</strong>，承担预告+引流功能
+    </div>
+</div>
+
+<!-- ========== 03 内容策略：唤山觉醒 ========== -->
+<div class="section">
+    <div class="section-title"><span class="icon">✍️</span> 三、内容策略 · 围绕【唤山觉醒】打造山野茶心智</div>
+
+    <div class="strategy-grid">
+        <div class="strat-item">
+            <h4>🎯 核心传播主题</h4>
+            <ul>
+                <li><strong>主话题：</strong>#唤醒山野味 #木姜子奶茶</li>
+                <li><strong>品牌话题：</strong>#东方山野茶就是既山海</li>
+                <li><strong>场景话题：</strong>#成都探店 #东郊记忆美食 #520约会去处</li>
+                <li><strong>情绪关键词：</strong>"第一次喝到""从未有过""山里的味道""被唤醒了"</li>
+            </ul>
+        </div>
+        <div class="strat-item">
+            <h4>🧠 心智打造逻辑</h4>
+            <ul>
+                <li>第一步：<strong>认知层</strong> — 木姜子是什么？独特在哪里？</li>
+                <li>第二步：<strong>体验层</strong> — 第一口的感觉描述（酸/香/辛/回甘）</li>
+                <li>第三步：<strong>关联层</strong> — 这种味道 = 既山海 = 东方山野茶</li>
+                <li>第四步：<strong>行动层</strong> — 520来喝 / 521来看直播抢福利</li>
+            </ul>
+        </div>
+        <div class="strat-item">
+            <h4>📝 内容规范（防雷同）</h4>
+            <ul>
+                <li><strong>禁止复制粘贴</strong> — 每位达人必须原创文案</li>
+                <li><strong>图片差异化</strong> — 不同角度/场景/滤镜</li>
+                <li><strong>标题不重复</strong> — 提供标题库但鼓励二创</li>
+                <li><strong>关键词密度</strong> — 每篇至少出现"木姜子""山野""既山海"各1次</li>
+                <li><strong>发布时间错开</strong> — 避免同一时段集中刷屏</li>
+            </ul>
+        </div>
+    </div>
+
+    <h3 style="font-size:17px;margin:28px 0 14px;color:#7dd3b8;">🎨 四大内容角度（按达人层级分配）</h3>
+    <div class="angle-grid">
+        <div class="angle-card">
+            <div class="angle-header" style="background:rgba(180,100,200,0.2);">角度一：风味探索</div>
+            <div class="angle-body">
+                <p><strong>适合人群：</strong>初级KOC + 中级KOC（共18条）</p>
+                <p><strong>内容方向：</strong>聚焦木姜子的独特风味体验，用感官语言描述"第一口"的冲击感。强调这是在成都能喝到的最特别的味道。</p>
+                <p class="title-examples">
+                    <strong>爆款标题参考：</strong>
+                    <div>① 成都！！这杯木姜子奶茶把我喝醒了😭</div>
+                    <div>② 第一次知道原来奶茶可以这么野…</div>
+                    <div>③ 谁懂啊！木姜子的味道太上头了！</div>
+                    <div>④ 在东郊记忆喝到了来自山里的味道🌿</div>
+                    <div>⑤ 木姜子奶茶测评｜这杯真的绝了</div>
+                </p>
+            </div>
+        </div>
+        <div class="angle-card">
+            <div class="angle-header" style="background:rgba(100,180,140,0.2);">角度二：场景种草</div>
+            <div class="angle-body">
+                <p><strong>适合人群：</strong>素人 + 初级KOC（共18条）</p>
+                <p><strong>内容方向：</strong>结合520/春夏场景，把"唤山觉醒"植入约会/逛街/打卡情境。强调"带TA来喝一杯不一样的"。</p>
+                <p class="title-examples">
+                    <strong>爆款标题参考：</strong>
+                    <div>① 520约会地📍我找到了成都最特别的一杯</div>
+                    <div>② 和男朋友在东郊记忆发现的宝藏奶茶🥺</div>
+                    <div>③ 周末逛东郊记忆必点！这杯太出片了✨</div>
+                    <div>④ 成都土著推荐｜东郊记忆这家茶饮好绝</div>
+                    <div>⑤ 520不想去挤网红店？来这里就对了</div>
+                </p>
+            </div>
+        </div>
+        <div class="angle-card">
+            <div class="angle-header" style="background:rgba(200,160,80,0.2);">角度三：品牌故事</div>
+            <div class="angle-body">
+                <p><strong>适合人群：</strong>中级KOC + 腰部KOL（共4条）</p>
+                <p><strong>内容方向：</strong>讲"东方山野茶"的品牌理念，为什么是"既山海"？从产地到杯中的故事。强化"山野茶=既山海"的心智。</p>
+                <p class="title-examples">
+                    <strong>爆款标题参考：</strong>
+                    <div>① 东方山野茶，就是既山海 🏔️</div>
+                    <div>② 这家把"山"搬进杯子里的茶饮店…</div>
+                    <div>③ 从云南深山到你手中的这杯茶🍃</div>
+                    <div>④ 为什么说山野茶才是奶茶界的next level？</div>
+                </p>
+            </div>
+        </div>
+        <div class="angle-card">
+            <div class="angle-header" style="background:rgba(220,120,60,0.2);">角度四：直播预热</div>
+            <div class="angle-body">
+                <p><strong>适合人群：</strong>腰部KOL（2条，直播前1天发）</p>
+                <p><strong>内容方向：</strong>预告520/521直播活动，制造紧迫感和期待值。"直播间有XX福利""限量XX份"。直接引导关注+预约。</p>
+                <p class="title-examples">
+                    <strong>爆款标题参考：</strong>
+                    <div>① ⚠️520他们要搞事情了！直播剧透</div>
+                    <div>② 521锁定！这家神仙茶饮直播有惊喜🎁</div>
+                    <div>③ 曝光！东郊记忆这家店520直播福利清单📝</div>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========== 04 执行时间轴 ========== -->
+<div class="section">
+    <div class="section-title"><span class="icon">📅</span> 四、执行时间轴（围绕520/521直播）</div>
+
+    <div class="timeline">
+        <div class="tl-node">
+            <div class="tl-date">4月24日 - 4月28日 · 筹备期（本周内）</div>
+            <div class="tl-title">📝 达人招募 & 筛选</div>
+            <div class="tl-desc">
+                • 通过螃蟹通告/红接等平台发布招募需求<br>
+                • 筛选标准：成都本地/美食或生活类/近期有活跃更新/互动率正常/图文风格匹配<br>
+                • 目标：初步储备 50-60 位候选人，最终筛选 40 位
+            </div>
+        </div>
+        <div class="tl-node">
+            <div class="tl-date">4月29日 - 5月6日 · 内容制作期</div>
+            <div class="tl-title">📸 寄样 & 内容审核</div>
+            <div class="tl-desc">
+                • 统一寄送「唤山觉醒」样品至达人（建议分批寄出降低成本）<br>
+                • 提供 Brief 文档：产品卖点图、关键词要求、禁忌事项、参考风格<br>
+                • 达人提交草稿 → 审核 → 修改反馈 → 确认定稿<br>
+                • <strong style="color:#f0c860;">关键：严格把控图片/视频质量和文案原创度</strong>
+            </div>
+        </div>
+        <div class="tl-node">
+            <div class="tl-date">5月7日 - 5月16日 · 集中发布期（第一阶段铺量）</div>
+            <div class="tl-title">🚀 素人 & 初级KOC 集中上线（31条）</div>
+            <div class="tl-desc">
+                • 素人 14条 + 初级KOC 17条 分批次发布<br>
+                • 发布节奏：<strong>每天 3-5 条</strong>，分布在早(8-10点)、午(12-14点)、晚(18-21点)<br>
+                • 目标：在搜索端建立"唤山觉醒""既山海 木姜子"的内容基础<br>
+                • 每天监测数据，低表现笔记及时用薯条补量
+            </div>
+        </div>
+        <div class="tl-node">
+            <div class="tl-date">5月17日 - 5月19日 · 质量拉升期</div>
+            <div class="tl-title">⬆️ 中级KOC 发布（7条）</div>
+            <div class="tl-desc">
+                • 中级KOC 7条陆续发布，提升整体内容质量水位<br>
+                • 配合520节日氛围升温，加入#520 #约会 #礼物等话题<br>
+                • 重点观察互动数据，筛选表现最好的 2-3 条追加薯条投流
+            </div>
+        </div>
+        <div class="tl-node" style="border-color:rgba(220,120,60,0.3);">
+            <div class="tl-date" style="color:#f5b87a;">5月20日 - 5月21日 · 直播引爆日 🔥</div>
+            <div class="tl-title" style="color:#f5b87a;">🎬 腰部KOL 预告 + 直播当天爆发</div>
+            <div class="tl-desc">
+                • <strong>5月19日晚或20日上午：</strong>腰部KOL 2条发布直播预告笔记<br>
+                • <strong>5月20-21日：</strong>配合直播时段，所有已发笔记进入评论维护阶段<br>
+                • 直播间引导观众去搜小红书/评论区互动，形成<strong>直播→搜索→种草→转化</strong>闭环<br>
+                • 直播结束后 48h 内完成所有笔记的数据复盘
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========== 05 成本明细 ========== -->
+<div class="section">
+    <div class="section-title"><span class="icon">💰</span> 五、成本明细 & 利润核算</div>
+
+    <table>
+        <tr>
+            <th>项目</th><th>说明</th><th>金额</th><th>备注</th>
+        </tr>
+        <tr>
+            <td>达人费用（素人）</td>
+            <td>14条 × ¥50/条</td>
+            <td>¥700</td>
+            <td>&lt;1k粉，纯素人或百粉号</td>
+        </tr>
+        <tr>
+            <td>达人费用（初级KOC）</td>
+            <td>17条 × ¥130/条</td>
+            <td>¥2,210</td>
+            <td>1k-3k粉，成都本地生活类优先</td>
+        </tr>
+        <tr>
+            <td>达人费用（中级KOC）</td>
+            <td>7条 × ¥260/条</td>
+            <td>¥1,820</td>
+            <td>3k-8k粉，垂直度高的账号</td>
+        </tr>
+        <tr>
+            <td>达人费用（腰部KOL）</td>
+            <td>2条 × ¥700/条</td>
+            <td>¥1,400</td>
+            <td>1w-5w粉，直播前1天发预告</td>
+        </tr>
+        <tr>
+            <td>样品寄送</td>
+            <td>约40份 × 平均¥8（快递+包装）</td>
+            <td>¥320</td>
+            <td>部分达人可自提（东郊记忆附近）</td>
+        </tr>
+        <tr>
+            <td>弹性备用金</td>
+            <td>达人议价浮动/紧急加推/薯条补量</td>
+            <td>¥1,070</td>
+            <td>按需使用</td>
+        </tr>
+        <tr style="background:rgba(125,211,184,0.1);">
+            <td colspan="2" style="text-align:right;font-weight:bold;padding-right:20px;">支出合计（预估）</td>
+            <td><strong>¥7,520</strong></td>
+            <td>≤ 可用额度 ¥7,200* ✅</td>
+        </tr>
+        <tr>
+            <td colspan="4" style="padding:12px 14px;font-size:12.5px;color:rgba(255,255,255,0.6);">
+                * 备用金 ¥1,070 为弹性项，实际达人费用 ¥6,130 + 寄样 ¥320 = ¥6,450，远低于可用额度，利润空间充足
+            </td>
+        </tr>
+    </table>
+
+    <div class="key-data" style="margin-top:24px;">
+        <div class="data-card">
+            <div class="num" style="color:#8ed4ae;">¥12,000</div>
+            <div class="label">合同金额</div>
+        </div>
+        <div class="data-card">
+            <div class="num" style="color:#f0c860;">~¥4,480+</div>
+            <div class="label">预计毛利润</div>
+            <div class="sub">利润率 ≥37%</div>
+        </div>
+        <div class="data-card">
+            <div class="num" style="color:#8ecfef;">40条</div>
+            <div class="label">交付笔记数</div>
+        </div>
+        <div class="data-card">
+            <div class="num" style="color:#d9a8ea;">¥153</div>
+            <div class="label">实际单均成本</div>
+            <div class="sub">不含备用金</div>
+        </div>
+    </div>
+</div>
+
+<!-- ========== 06 风险控制 ========== -->
+<div class="section">
+    <div class="section-title"><span class="icon">🛡️</span> 六、风险控制 & 注意事项</div>
+
+    <!-- 反假数据专区 -->
+    <div class="warn-box" style="margin-bottom:22px;background:linear-gradient(135deg,rgba(220,60,60,0.1),rgba(180,40,40,0.05));border-left-color:#d44;">
+        <strong style="color:#f07070;font-size:15px;">🔴 核心原则：数据真实性 > 数据好看</strong><br>
+        <span style="font-size:13px;color:rgba(255,255,255,0.7);">本次投放 77.5% 为素人+初级KOC，假数据不仅浪费预算，更会破坏品牌在小红书的账号信用。一旦被平台检测到刷量行为，可能导致：</span>
+        <ul style="margin:6px 0 0 18px;font-size:12px;color:rgba(255,255,255,0.65);">
+            <li>品牌官方账号被降权/限流</li>
+            <li>相关笔记被平台删除（连真实达人的也受牵连）</li>
+            <li>长期影响品牌在该平台的自然排名权重</li>
+        </ul>
+    </div>
+
+    <div class="strategy-grid">
+        <div class="strat-item">
+            <h4 style="color:#f08080;">🚫 假数据识别 & 防范（重中之重）</h4>
+            <ul>
+                <li><strong>签约前必须核查（逐人）：</strong><br>
+                    · 粉丝互动比异常（&gt;20%为高危）→ 淘汰<br>
+                    · 评论区僵尸号集中 → 淘汰<br>
+                    · 粉丝增长曲线有暴涨断崖 → 淘汰<br>
+                    · 笔记风格突变（从日常变探店机器）→ 淘汰</li>
+                <li><strong>发布后24h内监测：</strong><br>
+                    · 互动增速异常快（如1小时内突然100+赞）→ 标记复查<br>
+                    · 评论内容高度重复/emoji堆砌 → 联系达人确认<br>
+                    · 与历史数据偏差超过3倍 → 暂停后续合作</li>
+                <li><strong>发现假数据的处理流程：</strong><br>
+                    第一步：截图留存证据<br>
+                    第二步：联系达人要求合理解释<br>
+                    第三步：无法解释或证据确凿 → <strong>拒付尾款 + 公示黑名单</strong></li>
+                <li><strong>素人14条额外保障：</strong><br>
+                    · 全部要求<strong>发布截图+后台数据截图</strong>双重验证<br>
+                    · 随机抽取3-5条进行深度核查<br>
+                    · 建立合作素人白名单，优质者长期复用</li>
+            </ul>
+        </div>
+        <div class="strat-item">
+            <h4>⚠️ 内容风险</h4>
+            <ul>
+                <li><strong>笔记雷同风险：</strong>40条笔记必须避免文案/图片高度相似，否则会被平台判定营销号批量操作</li>
+                <li><strong>解决方案：</strong>每位达人提供独立Brief + 要求原创 + 抽查相似度</li>
+                <li><strong>违规词风险：</strong>避免"最""第一""绝对"等极限词</li>
+                <li><strong>解决方案：</strong>提供禁用词清单给所有达人</li>
+            </ul>
+        </div>
+        <div class="strat-item">
+            <h4>⚠️ 达人管理风险</h4>
+            <ul>
+                <li><strong>鸽子/跑单：</strong>素人级别达人履约意识较弱</li>
+                <li><strong>解决方案：</strong>多储备20%候选人；分批确认；先付定金尾款验收后付</li>
+                <li><strong>内容质量参差：</strong>低价达人出品不稳定</li>
+                <li><strong>解决方案：</strong>提前看样稿；不合格免费返工或更换</li>
+                <li><strong>素人配合度低：</strong>可能不按要求拍摄/文案敷衍</li>
+                <li><strong>解决方案：</strong>提供<strong>可视化Brief模板</strong>+ 示例图参考 + 一对一沟通确认</li>
+            </ul>
+        </div>
+        <div class="strat-item">
+            <h4>⚠️ 数据效果风险</h4>
+            <ul>
+                <li><strong>素人笔记无曝光：</strong>纯素人笔记自然流量可能极低</li>
+                <li><strong>解决方案：</strong>精选表现好的 5-8 条用薯条（¥50-100/条）加热</li>
+                <li><strong>时间窗口紧张：</strong>距520仅不到1个月</li>
+                <li><strong>解决方案：</strong>本周立即启动招募，5月7日前完成所有内容审核</li>
+                <li><strong>铺量但不出爆：</strong>40条笔记可能没有单条爆款</li>
+                <li><strong>解决方案：</strong>目标不是单条爆款而是<strong>矩阵覆盖</strong>；搜索关键词占领 + 直播前氛围预热即达标</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="highlight-box" style="margin-top:18px;background:linear-gradient(135deg,rgba(100,200,150,0.1),rgba(80,160,120,0.05));border-left-color:#6c9;">
+        <strong style="color:#8ed4ae;">✅ 风险控制总结 — 三道防线：</strong><br>
+        <table style="width:100%;margin-top:8px;font-size:13px;border-collapse:collapse;">
+            <tr><td style="padding:6px 10px;border-bottom:1px solid rgba(255,255,255,0.08);width:25%;"><strong>第一道：选号关</strong></td><td style="padding:6px 10px;border-bottom:1px solid rgba(255,255,255,0.08);">硬性标准初筛 + 主页人工复核 + 试稿筛选 = 假号进不来</td></tr>
+            <tr><td style="padding:6px 10px;border-bottom:1px solid rgba(255,255,255,0.08);"><strong>第二道：执行关</strong></td><td style="padding:6px 10px;border-bottom:1px solid rgba(255,255,255,0.08);">独立Brief + 原创要求 + 发布时间错开 + 内容抽查 = 雷同出不去</td></tr>
+            <tr><td style="padding:6px 10px;"><strong>第三道：监测关</strong></td><td style="padding:6px 10px;">24h数据监测 + 异常标记机制 + 黑名单制度 = 刷量藏不住</td></tr>
+        </table>
+    </div>
+</div>
+
+<!-- ========== 07 总结 ========== -->
+<div class="section">
+    <div class="section-title"><span class="icon">🎯</span> 七、方案总结</div>
+
+    <div class="highlight-box">
+        <strong>📌 核心策略一句话：</strong><br>
+        用 <strong>¥6,130 的达人成本</strong>撬动 <strong>40 条笔记</strong>铺量，
+        以<strong>素人+初级KOC（77.5%）</strong>做声量地基，
+        以<strong>中级KOC（17.5%）</strong>做品质锚点，
+        以<strong>腰部KOL（5%）</strong>做直播前引爆 ——<br>
+        全部围绕<strong>「唤山觉醒」木姜子风味单品</strong>，
+        打通<strong>「东方山野茶 = 既山海」</strong>的品牌心智，
+        最终服务于 <strong>520/521 直播引流 & 新品首发</strong>。
+    </div>
+
+    <table style="margin-top:20px;">
+        <tr>
+            <th>指标</th><th>一期（旧方案）</th><th>二期（本方案）</th><th>提升</th>
+        </tr>
+        <tr>
+            <td>笔记总数</td><td>7条</td><td><strong>40条</strong></td><td style="color:#8ed4ae;">+471%</td>
+        </tr>
+        <tr>
+            <td>单均达人成本</td><td>较高（中腰部为主）</td><td><strong>~¥153</strong></td>
+            <td style="color:#8ed4ae;">大幅降低</td>
+        </tr>
+        <tr>
+            <td>覆盖达人量</td><td>7人</td><td><strong>40人</strong></td>
+            <td style="color:#8ed4ae;">+471%</td>
+        </tr>
+        <tr>
+            <td>利润率</td><td>-</td><td><strong>≥37%-40%</strong></td>
+            <td style="color:#8ed4ae;">达标</td>
+        </tr>
+        <tr>
+            <td>策略重心</td><td>精品化曝光</td>
+            <td><strong>铺量种草+直播引流</strong></td>
+            <td style="color:#f0c860;">转型</td>
+        </tr>
+    </table>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    <p>© 2026 万道潮传媒 | 既山海品牌 · 小红书二期投放方案</p>
+    <p style="margin-top:6px;">内部资料 · 请勿外传</p>
+</div>
+
+</div><!-- end container -->
+
+</body>
+</html>
